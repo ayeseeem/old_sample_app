@@ -1,5 +1,7 @@
 require 'autotest\growl'
-require 'autotest\fsevent'
+# 2011-10-02 ICM remove this - I think it might be for MacOS only,
+# or only work on MacOS at least:
+#require 'autotest\fsevent'
 
 Autotest::Growl::sticky_failure_notifications = true
 
