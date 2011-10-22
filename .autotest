@@ -5,3 +5,24 @@ require 'autotest\growl'
 
 Autotest::Growl::sticky_failure_notifications = true
 
+Autotest.add_hook :initialize do |at|
+  # This was the ignores line I copied from elsewhere
+  #%w{.git Rakefile README spec/spec.opts spec/rcov.opts vendor/gems autotest .DS_Store }.each {|exception|at.add_exception(exception)}
+  # Change to Windows path separator
+  %w{.git Rakefile README spec\spec.opts spec\rcov.opts vendor\gems autotest .DS_Store }.each {|exception|at.add_exception(exception)}
+end
+
+Autotest.add_hook :initialize do |autotest|
+#  autotest.add_mapping(/^spec\/integration\/.*_spec\.rb$/) do|filename, _|
+#    filename
+#  end
+  autotest.add_mapping(/^spec\\integration\\.*_spec\.rb$/) do|filename, _|
+	filename
+  end
+#  autotest.add_mapping(/^spec\/(controllers|helpers|lib|models|views)\/.*_spec\.rb$/) do|filename, _|
+#    filename
+#  end
+  autotest.add_mapping(/^spec\\(controllers|helpers|lib|models|views)\\.*_spec\.rb$/) do|filename, _|
+    filename
+  end
+end
